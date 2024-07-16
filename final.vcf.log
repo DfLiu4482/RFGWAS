@@ -1,0 +1,10 @@
+beagle.28Jun21.220.jar (version 5.2)
+Copyright (C) 2014-2021 Brian L. Browning
+Enter "java -jar beagle.28Jun21.220.jar" to list command line argument
+Start time: 04:02 PM CST on 05 Jun 2024
+
+Command line: java -Xmx4096m -jar beagle.28Jun21.220.jar
+  gt=Neogen_China_POR80KV01_20170813.vcf
+  out=final.vcf
+
+No genetic map is specified: using 1 cM = 1 Mb
