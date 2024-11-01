@@ -38,7 +38,6 @@ print("运行时间为：", run_time, "秒")
 
 sorted_indices = np.argsort(feature_importances)[::-1]
  
-sorted_indices = np.argsort(feature_importances)[::-1]
  
 # 绘制特征的重要性条形图
 plt.barh(feature_names[sorted_indices[:10]], feature_importances[sorted_indices[:10]])
