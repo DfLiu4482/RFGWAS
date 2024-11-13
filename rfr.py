@@ -16,7 +16,9 @@ def execute(phe_path, gen_path):
     x = xx.T
 
     # 拆分训练集和测试集
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
+    #x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
+    x_train = x
+    y_train = y
 
     # 开始训练
     forest = RandomForestRegressor(random_state=0, n_estimators=200)
@@ -26,7 +28,7 @@ def execute(phe_path, gen_path):
     feature_importances = forest.feature_importances_
     
     sorted_indices = np.argsort(feature_importances)[::-1]
-    snp_num = int(len(sorted_indices) * 0.1)
+    snp_num = int(1+len(sorted_indices) * 0.1)
     
     # 输出前10%变量特征名称到csv
     top_feature = feature_names[sorted_indices[:snp_num]]
@@ -34,22 +36,19 @@ def execute(phe_path, gen_path):
     df.to_csv('FeatureName.csv', index=False)
 
     
-    genFileHandler(xxx,top_feature)
+    genFileHandler(gen_path,top_feature)
 
     # 绘制特征的重要性条形图
-    plt.barh(feature_names[sorted_indices[:snp_num]], feature_importances[sorted_indices[:snp_num]])
-    plt.xlabel("Feature Importance")
-    plt.ylabel("Feature Name")
-    plt.title("Feature Importance Plot")
-    plt.savefig('feature.png')
-    plt.close()
+    # plt.barh(feature_names[sorted_indices[:snp_num]], feature_importances[sorted_indices[:snp_num]])
+    # plt.xlabel("Feature Importance")
+    # plt.ylabel("Feature Name")
+    # plt.title("Feature Importance Plot")
+    # plt.savefig('feature.png')
+    # plt.close()
     
 
-def genFileHandler(genData,snp_name):
-    genData[snp_name]
-    df = pd.DataFrame(genData[snp_name])
-    df.to_csv('newGen.csv', index=False)
+def genFileHandler(gen_path,snp_name):
+    xxx = pd.read_csv(gen_path, index_col=0)
+    df = xxx.loc[snp_name]
+    df.to_csv('newGen.csv', index=True)
     print(2)
-
-def pheFileHandler():
-    print(3)
